@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: #2662d9;
+        --color-secondary: #47b4eb;
+        --color-border: hsl(220 15% 88%);
+        --color-title: hsl(220 25% 15%);
+        --color-subtitle: hsl(220 15% 45%);
+        --color-focus: hsl(220 90% 56%);
+        --color-destructive: #e02424;
+        --font-inter: "Inter", sans-serif;
+        --animate-fade-slide-in: fade-slide-in 0.5s ease-out forwards;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("./assets/fonts/inter-VariableFont_opsz,wght.ttf")
+          format("truetype");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+
+      @keyframes fade-slide-in {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    </style>
+    <link rel="icon" type="image/svg" href="./assets/icons/logo.svg" />
+    <title>ExamPro - Register</title>
+  </head>
+  <body
+    class="m-0 p-0 box-border font-inter min-h-screen bg-gradient-to-r from-primary to-secondary"
+  >
+    <div
+      class="flex justify-center items-center h-full min-h-screen p-4 overflow-hidden"
+    >
+      <div
+        class="w-full max-w-md p-8 border border-border rounded-xl shadow-md bg-white/95 animate-fade-slide-in"
+      >
+        <div class="mx-auto mb-2 w-[70px] h-[70px] motion-safe:animate-bounce">
+          <img
+            src="./assets/icons/logo.svg"
+            alt="ExamPro Logo"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div>
+          <h2 class="text-center mb-2.5 text-2xl text-title font-bold">
+            Create Account
+          </h2>
+          <p class="text-center mb-7 text-sm text-subtitle">
+            Join our learning community today
+          </p>
+          <form
+            action="/register"
+            method="POST"
+            class="flex flex-col items-center gap-4"
+          >
+            <div class="w-full grid grid-cols-2 gap-4">
+              <div class="w-full">
+                <div class="relative">
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    placeholder=" "
+                    class="peer w-full pt-5 pb-2 px-4 border border-border rounded-lg bg-white text-base outline-none transition-all duration-300 focus:border-focus focus:ring-[3px] focus:ring-primary/10"
+                  />
+                  <label
+                    for="firstName"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-subtitle text-base pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-focus peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:translate-y-0 peer-[:not(:placeholder-shown)]:text-xs"
+                    >First Name</label
+                  >
+                </div>
+                <p
+                  class="top-12 text-destructive text-sm mt-1 animate-fade-slide-in hidden"
+                  id="firstNameError"
+                ></p>
+              </div>
+              <div class="w-full">
+                <div class="relative">
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    placeholder=" "
+                    class="peer w-full pt-5 pb-2 px-4 border border-border rounded-lg bg-white text-base outline-none transition-all duration-300 focus:border-focus focus:ring-[3px] focus:ring-primary/10"
+                  />
+                  <label
+                    for="lastName"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-subtitle text-base pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-focus peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:translate-y-0 peer-[:not(:placeholder-shown)]:text-xs"
+                    >Last Name</label
+                  >
+                </div>
+                <p
+                  class="top-12 text-destructive text-sm mt-1 animate-fade-slide-in hidden"
+                  id="lastNameError"
+                ></p>
+              </div>
+              <div class="w-full col-span-2">
+                <div class="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder=" "
+                    class="peer w-full pt-5 pb-2 px-4 border border-border rounded-lg bg-white text-base outline-none transition-all duration-300 focus:border-focus focus:ring-[3px] focus:ring-primary/10"
+                  />
+                  <label
+                    for="email"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-subtitle text-base pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-focus peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:translate-y-0 peer-[:not(:placeholder-shown)]:text-xs"
+                    >Email Address</label
+                  >
+                </div>
+                <p
+                  class="top-12 text-destructive text-sm mt-1 animate-fade-slide-in hidden"
+                  id="emailError"
+                ></p>
+              </div>
+              <div class="w-full col-span-2">
+                <div class="relative">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder=" "
+                    class="peer w-full pt-5 pb-2 pl-4 pr-12 border border-border rounded-lg bg-white text-base outline-none transition-all duration-300 focus:border-focus focus:ring-[3px] focus:ring-primary/10"
+                  />
+                  <label
+                    for="password"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-subtitle text-base pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-focus peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:translate-y-0 peer-[:not(:placeholder-shown)]:text-xs"
+                    >Password</label
+                  >
+                  <button
+                    type="button"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 text-subtitle hover:text-title transition-colors cursor-pointer"
+                    id="togglePassword"
+                  >
+                    <svg class="w-[18px] h-[18px]" stroke="currentColor">
+                      <use href="./assets/icons/eye-open.svg" />
+                    </svg>
+                  </button>
+                </div>
+                <p
+                  class="top-12 text-destructive text-sm mt-1 animate-fade-slide-in hidden"
+                  id="passwordError"
+                ></p>
+              </div>
+              <div class="w-full col-span-2">
+                <div class="relative">
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    placeholder=" "
+                    class="peer w-full pt-5 pb-2 pl-4 pr-12 border border-border rounded-lg bg-white text-base outline-none transition-all duration-300 focus:border-focus focus:ring-[3px] focus:ring-primary/10"
+                  />
+                  <label
+                    for="confirmPassword"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-subtitle text-base pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-focus peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:translate-y-0 peer-[:not(:placeholder-shown)]:text-xs"
+                    >Confirm Password</label
+                  >
+                  <button
+                    type="button"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 text-subtitle hover:text-title transition-colors cursor-pointer"
+                    id="toggleConfirmPassword"
+                  >
+                    <svg class="w-[18px] h-[18px]" stroke="currentColor">
+                      <use href="./assets/icons/eye-open.svg" />
+                    </svg>
+                  </button>
+                </div>
+                <p
+                  class="top-12 text-destructive text-sm mt-1 animate-fade-slide-in hidden"
+                  id="confirmPasswordError"
+                ></p>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="w-full flex justify-center items-center gap-2 py-2 px-6 bg-primary text-white text-lg font-semibold rounded-lg border-2 border-primary hover:bg-primary/90 transition-colors cursor-pointer"
+              id="registerButton"
+            >
+              Register
+              <svg class="w-[20px] h-[20px]">
+                <use href="./assets/icons/arrow-right.svg" />
+              </svg>
+            </button>
+
+            <p class="text-sm text-subtitle">
+              Already have an account?
+              <a
+                href="./signin.html"
+                class="text-primary hover:text-primary/80 font-semibold"
+                >Sign In</a
+              >
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./js/register.js"></script>
+  </body>
+</html>

@@ -116,7 +116,7 @@ form.addEventListener('submit', function (event) {
                 if (user.password === passwordInput.value) {
                     isAccountValid = true;
                     localStorage.setItem('currentUser', JSON.stringify(user));
-                    window.location.href = './dashboard.html';
+                    window.location.href = './start-exam.html';
                 }
             }
         });

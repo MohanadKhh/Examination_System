@@ -9,12 +9,7 @@ let answer = {
     isCorrect: true,
 }
 
-let student = {
-    firstName: "Mohanad",
-    lastName: "Khaled",
-    email: "mohanedkkhaled@gmail.com",
-    password: "123456789"
-}
+let student = JSON.parse(localStorage.getItem("currentUser"));
 
 let examQuestions = [
     [
@@ -124,11 +119,10 @@ questions.forEach(q => {
 });
 
 
-localStorage.setItem("student", JSON.stringify(student));
 localStorage.setItem("examQuestions", JSON.stringify(questions));
 
 
-let student2 = JSON.parse(localStorage.getItem("student"));
+let student2 = JSON.parse(localStorage.getItem("currentUser"));
 
 if (student2) {
     document.getElementById("studentName").innerText =

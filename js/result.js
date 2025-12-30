@@ -1,6 +1,6 @@
 showPage();
-let student = JSON.parse(localStorage.getItem("StudentGrade"));
-let grade = JSON.parse(localStorage.getItem("currentQuestionIndex")) ?? 0;
+let student = JSON.parse(localStorage.getItem("currentUser"));
+let grade = JSON.parse(localStorage.getItem("StudentGrade"));
 const questions = JSON.parse(localStorage.getItem("examQuestions")) ?? [];
 
 if (student) {
@@ -13,7 +13,7 @@ const inCorrectQu = document.querySelector(".incorrect__counts p")
 const progress = document.querySelector(".radial-progress")
 
 correctQu.innerText = grade
-inCorrectQu.innerText = questions.length - +grade
+inCorrectQu.innerText = questions.length - grade
 
 let percent = +grade * 10;
 progress.querySelector("div").innerText = percent + "%"

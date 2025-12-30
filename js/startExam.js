@@ -15,18 +15,6 @@ signOutBtn.addEventListener('click', function () {
 });
 
 submitBtn.addEventListener('click', function () {
-    let question = {
-        id: null,
-        quText: "",
-        answers: [],
-    }
-
-    let answer = {
-        ansText: "",
-        isCorrect: true,
-    }
-
-
     let examQuestions = [
         [
             "What is the capital of Egypt?",
@@ -133,5 +121,7 @@ submitBtn.addEventListener('click', function () {
     });
 
 
-    localStorage.setItem("examQuestions", JSON.stringify(questions));
+    localStorage.setItem("examState", JSON.stringify({questions, studentAnswers: null, TimerExamInSec: null, currentQuestionIndex: null, markQuestions : null}));
+    localStorage.setItem("currentUser", JSON.stringify({...currentUser, examStatus: 'active', grade: null}));
+    replace('/exam/');
 });

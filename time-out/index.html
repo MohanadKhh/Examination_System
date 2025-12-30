@@ -47,6 +47,26 @@
   <body
     class="m-0 p-0 box-border font-inter min-h-screen bg-gradient-to-r from-primary to-secondary opacity-0"
   >
+    <button
+      id="signOutBtn"
+      class="absolute top-4 right-4 flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-destructive hover:text-white text-destructive font-medium rounded-lg border border-destructive/30 hover:border-destructive transition-all duration-300 cursor-pointer shadow-sm"
+    >
+      <svg
+        class="w-5 h-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+        <polyline points="16 17 21 12 16 7"></polyline>
+        <line x1="21" y1="12" x2="9" y2="12"></line>
+      </svg>
+      <span class="text-sm">Sign Out</span>
+    </button>
+
     <div
       class="flex justify-center items-center h-full min-h-screen p-4 overflow-hidden"
     >

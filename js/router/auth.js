@@ -19,12 +19,17 @@ function getUsers() {
 function saveUsers(users) {
     localStorage.setItem('users', JSON.stringify(users));
 }
-function findUserByEmail(email) {
-    const users = getUsers();
+function updateCurrentUser() {
+    var currentUser = getCurrentUser();
+    if (!currentUser) return null;
+    var users = getUsers();
     for (var i = 0; i < users.length; i++) {
-        if (users[i].email.toLowerCase() === email.toLowerCase()) {
-            return users[i];
+        if (users[i].email.toLowerCase() === currentUser.email.toLowerCase()) {
+            users[i] = currentUser;
+            break;
         }
     }
-    return null;
+    saveUsers(users);
+
+    return currentUser;
 }

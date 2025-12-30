@@ -227,7 +227,7 @@ form.addEventListener('submit', function (event) {
             registerButton.querySelector('svg').querySelector('use').setAttribute('href', '../assets/icons/arrow-right.svg');
             registerButton.querySelector('svg').classList.remove('animate-spin');
         }, 1500);
-        var users = JSON.parse(localStorage.getItem('users')) || [];
+        var users = getUsers();
         var isEmailTaken = false;
         users.forEach(function (user) {
             if (user.email === emailInput.value.trim().toLowerCase()) {
@@ -247,7 +247,7 @@ form.addEventListener('submit', function (event) {
                 password: passwordInput.value
             });
             localStorage.setItem('users', JSON.stringify(users));
-            location.href = '/signin/';
+            to('/signin/');
         }
     }
 });

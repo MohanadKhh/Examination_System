@@ -7,7 +7,12 @@ if (currentUser) {
         currentUser.firstName + " " + currentUser.lastName;
 }
 
-var examResults = JSON.parse(localStorage.getItem("grade"));
+signOutBtn.addEventListener('click', function () {
+    localStorage.removeItem('currentUser');
+    window.location.replace('/signin/');
+});
+
+var examResults = student?.grade || null;
 if (examResults) {
     document.getElementById("correctAnswers").textContent =
         examResults.correct || 0;
@@ -18,5 +23,5 @@ if (examResults) {
 }
 
 document.getElementById("homeBtn").addEventListener("click", function () {
-    window.location.href = "/start-exam/";
+    window.location.href = "/signin/";
 });

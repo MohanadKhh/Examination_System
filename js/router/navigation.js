@@ -30,6 +30,14 @@ function isAuthPage() {
 function is404Page() {
     return getCurrentPage() === '404';
 }
+function isTakenExam() {
+    var currentUser = getCurrentUser();
+    return currentUser && currentUser.examStatus === 'finished';
+}
+function isExamStarted() {
+    var currentUser = getCurrentUser();
+    return currentUser && currentUser.examStatus === 'active';
+}
 function guardRoute() {
     var authenticated = isAuthenticated();
     var currentPage = getCurrentPage();
@@ -47,6 +55,22 @@ function guardRoute() {
     }
     if (isAuthPage() && authenticated) {
         replace(routes.homeRedirect);
+        return false;
+    }
+    if (currentPage === 'start-exam' && isTakenExam()) {
+        replace('/result/');
+        return false;
+    }
+    if( (currentPage === 'result' || currentPage === 'time-out') && !isTakenExam()) {
+        replace('/start-exam/');
+        return false;
+    }
+    if ((currentPage === 'exam') && !isExamStarted()) {
+        replace('/start-exam/');
+        return false;
+    }
+    if (isExamStarted() && currentPage !== 'exam') {
+        replace('/exam/');
         return false;
     }
     return true;

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: #2662d9;
+        --color-secondary: #47b4eb;
+        --color-border: hsl(220 15% 88%);
+        --color-title: hsl(220 25% 15%);
+        --color-subtitle: hsl(220 15% 45%);
+        --color-focus: hsl(220 90% 56%);
+        --color-destructive: #e02424;
+        --color-warning: #f59e0b;
+        --color-muted: hsl(220 15% 96%);
+        --font-inter: "Inter", sans-serif;
+        --animate-fade-slide-in: fade-slide-in 0.5s ease-out forwards;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("../assets/fonts/inter-VariableFont_opsz,wght.ttf")
+          format("truetype");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+
+      @keyframes fade-slide-in {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    </style>
+    <link rel="icon" type="image/svg" href="../assets/icons/logo.svg" />
+    <script src="../js/router/auth.js"></script>
+    <script src="../js/router/navigation.js"></script>
+    <script src="../js/main.js"></script>
+    <title>ExamPro - Time's Up</title>
+  </head>
+  <body
+    class="m-0 p-0 box-border font-inter min-h-screen bg-gradient-to-r from-primary to-secondary opacity-0"
+  >
+    <div
+      class="flex justify-center items-center h-full min-h-screen p-4 overflow-hidden"
+    >
+      <div
+        class="w-full max-w-lg p-8 border border-border rounded-xl shadow-md bg-white/95 animate-fade-slide-in text-center"
+      >
+        <div
+          class="w-20 h-20 mx-auto mb-6 bg-warning/10 rounded-full flex items-center justify-center"
+        >
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-warning"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <h1 class="text-4xl font-bold text-title mb-2">Time's Up!</h1>
+
+        <p class="text-lg text-primary font-medium mb-6" id="usernameDisplay">
+          Guest
+        </p>
+
+        <div class="bg-muted rounded-lg p-6 mb-8">
+          <div
+            class="flex items-center justify-center gap-2 text-subtitle mb-2"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="text-sm">Your exam has ended</span>
+          </div>
+          <p class="text-title text-sm">
+            You answered
+            <span class="text-primary font-semibold" id="correctAnswers"
+              >0</span
+            >
+            out of
+            <span class="font-semibold" id="totalQuestions">10</span>
+            questions correctly
+          </p>
+          <p class="text-2xl font-bold text-primary mt-4">
+            Score: <span id="scorePercent">0</span>%
+          </p>
+        </div>
+
+        <div class="flex gap-4 justify-center">
+          <button
+            class="flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg border-2 border-primary hover:bg-primary/90 transition-colors cursor-pointer flex-1 flex-row justify-center"
+            id="homeBtn"
+          >
+            <div class="text-lg">
+              <svg
+                width="20"
+                class="inline mb-[5px] mr-1"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                <path
+                  d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                ></path>
+              </svg>
+              Home
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../js/timeOut.js"></script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="image/svg" href="../assets/icons/logo.svg" />
+    <script src="../js/router/auth.js"></script>
+    <script src="../js/router/navigation.js"></script>
+    <script src="../js/main.js"></script>
+    <title>ExamPro - result</title>
+
+</head>
+
+<body
+    class="bg-gradient-to-br from-[#2764d8] via-[#44ade1dd] to-[#649ddf] min-h-screen w-full py-15 px-5 xs:px-20 sm:px-30 md:px-50 lg:px-90 opacity-0">
+    <div class="main__container bg-white flex flex-col gap-5 items-center justify-center p-10 rounded-xl">
+        <div class="text-4xl font-semibold font-serif">Keep Practicing!</div>
+        <div class="icon__box w-20 h-20 rounded-full bg-[#dfe8f9] flex justify-center items-center">
+            <i class="fa-solid fa-user-graduate text-5xl"></i>
+        </div>
+
+
+        <div class="user__info text-center">
+            <p class="text-xs md:text-sm text-[#555]">Student</p>
+            <p id="studentName" class="text-nowrap text-xs md:text-sm font-semibold">Hamada hamada</p>
+        </div>
+
+        <div class="radial-progress text-2xl font-semibold flex flex-col justify-center items-center"
+            style="--value:70; --size:8rem; --thickness: 10px;" aria-valuenow="70" role="progressbar">
+            <div>70%</div>
+            <div class="text-xs md:text-sm text-[#555]">score</div>
+        </div>
+
+
+        <div class="flex justify-center items-center gap-5">
+            <div class="incorrect__container flex flex-col items-center justify-center">
+                <div class="correct__counts flex gap-1 items-center text-[#28af60]">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <p class="text-lg font-bold">8</p>
+                </div>
+
+                <div class="text-xs md:text-sm text-[#555]">Correct</div>
+            </div>
+
+            <i class="fa-solid fa-grip-lines-vertical"></i>
+
+            <div class="incorrect__container flex flex-col items-center justify-center">
+                <div class="incorrect__counts flex gap-1 items-center text-[#dc2828]">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                    <p class="text-lg font-bold">2</p>
+                </div>
+
+                <div class="text-xs md:text-sm text-[#555]">Incorrect</div>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="../js/result.js"></script>
+</body>
+
+</html>

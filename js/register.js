@@ -16,6 +16,12 @@ var passwordError = document.getElementById('passwordError');
 var confirmPasswordError = document.getElementById('confirmPasswordError');
 var togglePassword = document.getElementById('togglePassword');
 var toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+var eyeOpenIconPassword = document.getElementById('eyeOpenIconPassword');
+var eyeClosedIconPassword = document.getElementById('eyeClosedIconPassword');
+var eyeOpenIconConfirmPassword = document.getElementById('eyeOpenIconConfirmPassword');
+var eyeClosedIconConfirmPassword = document.getElementById('eyeClosedIconConfirmPassword');
+var arrowIcon = document.getElementById('arrowIcon');
+var loadingSpinner = document.getElementById('loadingSpinner');
 
 function validateFirstName(value) {
     const trimStr = value.trim();
@@ -170,20 +176,23 @@ confirmPasswordInput.addEventListener('blur', function (e) {
 togglePassword.addEventListener('click', function () {
     var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordInput.setAttribute('type', type);
-    this.querySelector('use').setAttribute('href', type === 'password' ? '../assets/icons/eye-open.svg' : '../assets/icons/eye-closed.svg');
+    eyeOpenIconPassword.classList.toggle('hidden');
+    eyeClosedIconPassword.classList.toggle('hidden');
 });
 
 toggleConfirmPassword.addEventListener('click', function () {
     var type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     confirmPasswordInput.setAttribute('type', type);
-    this.querySelector('use').setAttribute('href', type === 'password' ? '../assets/icons/eye-open.svg' : '../assets/icons/eye-closed.svg');
+    eyeOpenIconConfirmPassword.classList.toggle('hidden');
+    eyeClosedIconConfirmPassword.classList.toggle('hidden');
 });
 
 function startLoading() {
     registerButton.disabled = true;
     registerButton.classList.add('cursor-not-allowed', 'pointer-events-none');
-    registerButton.querySelector('svg').querySelector('use').setAttribute('href', '../assets/icons/spinner.svg');
-    registerButton.querySelector('svg').classList.add('animate-spin');
+    arrowIcon.classList.add('hidden');
+    loadingSpinner.classList.remove('hidden');
+    loadingSpinner.classList.add('animate-spin');
 }
 
 form.addEventListener('submit', function (event) {
@@ -224,8 +233,9 @@ form.addEventListener('submit', function (event) {
         setTimeout(function () {
             registerButton.disabled = false;
             registerButton.classList.remove('cursor-not-allowed', 'pointer-events-none');
-            registerButton.querySelector('svg').querySelector('use').setAttribute('href', '../assets/icons/arrow-right.svg');
-            registerButton.querySelector('svg').classList.remove('animate-spin');
+            loadingSpinner.classList.add('hidden');
+            loadingSpinner.classList.remove('animate-spin');
+            arrowIcon.classList.remove('hidden');
         }, 1500);
         var users = getUsers();
         var isEmailTaken = false;

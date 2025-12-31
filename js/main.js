@@ -1,4 +1,4 @@
 guardRoute();
 if(getCurrentPage() === '') {
-    replace('/register/');
+    to('/register/');
 }

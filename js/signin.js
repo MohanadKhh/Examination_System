@@ -9,6 +9,10 @@ var emailError = document.getElementById('emailError');
 var passwordError = document.getElementById('passwordError');
 var signinError = document.getElementById('signinError');
 var togglePassword = document.getElementById('togglePassword');
+var eyeOpenIcon = document.getElementById('eyeOpenIcon');
+var eyeClosedIcon = document.getElementById('eyeClosedIcon');
+var arrowIcon = document.getElementById('arrowIcon');
+var loadingSpinner = document.getElementById('loadingSpinner');
 
 function validateEmail(value) {
     const trimStr = value.trim().toLowerCase();
@@ -77,14 +81,16 @@ passwordInput.addEventListener('blur', function (e) {
 togglePassword.addEventListener('click', function () {
     var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordInput.setAttribute('type', type);
-    this.querySelector('use').setAttribute('href', type === 'password' ? '../assets/icons/eye-open.svg' : '../assets/icons/eye-closed.svg');
+    eyeOpenIcon.classList.toggle('hidden');
+    eyeClosedIcon.classList.toggle('hidden');
 });
 
 function startLoading() {
     submitBtn.disabled = true;
     submitBtn.classList.add('cursor-not-allowed', 'pointer-events-none');
-    submitBtn.querySelector('svg').querySelector('use').setAttribute('href', '../assets/icons/spinner.svg');
-    submitBtn.querySelector('svg').classList.add('animate-spin');
+    arrowIcon.classList.add('hidden');
+    loadingSpinner.classList.remove('hidden');
+    loadingSpinner.classList.add('animate-spin');
 }
 
 form.addEventListener('submit', function (event) {
@@ -107,8 +113,10 @@ form.addEventListener('submit', function (event) {
         setTimeout(function () {
             submitBtn.disabled = false;
             submitBtn.classList.remove('cursor-not-allowed', 'pointer-events-none');
-            submitBtn.querySelector('svg').querySelector('use').setAttribute('href', '../assets/icons/arrow-right.svg');
-            submitBtn.querySelector('svg').classList.remove('animate-spin');
+            loadingSpinner.classList.add('hidden');
+            loadingSpinner.classList.remove('animate-spin');
+            arrowIcon.classList.remove('hidden');
+
         }, 1500);
         var users = JSON.parse(localStorage.getItem('users')) || [];
         var isAccountValid = false;

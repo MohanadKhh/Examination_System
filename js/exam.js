@@ -1,7 +1,10 @@
 showPage();
-const examState = JSON.parse(localStorage.getItem("examState"));
+function getExamState() {
+    return JSON.parse(localStorage.getItem("examState")) || {};
+}
+const examState = getExamState();
 const questions = examState.questions ?? [];
-let student = JSON.parse(localStorage.getItem("currentUser"));
+let student = getCurrentUser();
 
 let currentQu = examState.currentQuestionIndex ?? 0;
 const stAnswers = loadStudentAnswers()
@@ -26,7 +29,7 @@ function loadStudentAnswers() {
 function saveStudentAnswers() {
     localStorage.setItem(
         "examState",
-        JSON.stringify({...examState, studentAnswers: [...stAnswers]})
+        JSON.stringify({ ...getExamState(), studentAnswers: [...stAnswers] })
     );
 }
 
@@ -70,7 +73,8 @@ function submitExam() {
             }
         }
     }
-    localStorage.setItem("currentUser", JSON.stringify({...student,
+    localStorage.setItem("currentUser", JSON.stringify({
+        ...getCurrentUser(),
         examStatus: 'finished', grade: {
             correct: grade,
             total: questions.length,
@@ -102,7 +106,7 @@ let timerInterval = setInterval(() => {
     spans[1].style.setProperty("--value", seconds);
 
     timeLeft--;
-    localStorage.setItem("examState", JSON.stringify({...examState, TimerExamInSec: timeLeft }));
+    localStorage.setItem("examState", JSON.stringify({ ...getExamState(), TimerExamInSec: timeLeft }));
 
     if (timeLeft <= 29) {
         parentSpan.classList.add("text-red-600", "[-webkit-text-stroke:0.5px_black]")
@@ -124,8 +128,9 @@ let timerInterval = setInterval(() => {
                 }
             }
         }
-        localStorage.setItem("currentUser", JSON.stringify({...student, 
-            examStatus: 'finished', grade: {
+        localStorage.setItem("currentUser", JSON.stringify({
+            ...getCurrentUser(),
+            examStatus: 'timeout', grade: {
                 correct: grade,
                 total: questions.length,
                 percent: ((grade / questions.length) * 100).toFixed(2)
@@ -166,7 +171,7 @@ function loadQu(quId) {
 
     if (quId >= 0 && quId < questions.length) {
         currentQu = quId;
-        localStorage.setItem("examState", JSON.stringify({...examState,  currentQuestionIndex: currentQu }));
+        localStorage.setItem("examState", JSON.stringify({ ...getExamState(), currentQuestionIndex: currentQu }));
 
         let quNum = quId + 1;
 
@@ -209,7 +214,7 @@ loadQu(currentQu)
 markBtn.addEventListener("click", () => {
     if (markedQuestions.includes(currentQu)) {
         markedQuestions = markedQuestions.filter(x => x !== currentQu);
-        localStorage.setItem("examState", JSON.stringify({...examState,  markQuestions: markedQuestions }));
+        localStorage.setItem("examState", JSON.stringify({ ...getExamState(), markQuestions: markedQuestions }));
 
         const btn = document.getElementById(`marked__qu${currentQu}`);
         btn.remove();
@@ -220,7 +225,7 @@ markBtn.addEventListener("click", () => {
     }
     else {
         markedQuestions.push(currentQu);
-        localStorage.setItem("examState", JSON.stringify({...examState,  markQuestions: markedQuestions }));
+        localStorage.setItem("examState", JSON.stringify({ ...getExamState(), markQuestions: markedQuestions }));
 
         markText.textContent = "Marked";
         markBtn.className = "mark__button btn btn-soft btn-warning rounded-xl md-py-2 bg-[#f59f0b] text-white"

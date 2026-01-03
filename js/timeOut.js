@@ -12,7 +12,7 @@ signOutBtn.addEventListener('click', function () {
     window.location.replace('/signin/');
 });
 
-var examResults = student?.grade || null;
+var examResults = currentUser?.grade || null;
 if (examResults) {
     document.getElementById("correctAnswers").textContent =
         examResults.correct || 0;

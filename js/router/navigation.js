@@ -32,7 +32,7 @@ function is404Page() {
 }
 function isTakenExam() {
     var currentUser = getCurrentUser();
-    return currentUser && currentUser.examStatus === 'finished';
+    return currentUser && (currentUser.examStatus === 'finished' || currentUser.examStatus === 'timeout');
 }
 function isExamStarted() {
     var currentUser = getCurrentUser();
@@ -41,12 +41,16 @@ function isExamStarted() {
 function guardRoute() {
     var authenticated = isAuthenticated();
     var currentPage = getCurrentPage();
-    
+
     if (is404Page()) {
         return true;
     }
     if (!isPageExists()) {
         replace(routes.notFoundRedirect);
+        return false;
+    }
+    if (currentPage === 'time-out' && getCurrentUser().examStatus === 'finished') {
+        replace('/result/');
         return false;
     }
     if (isProtectedRoute() && !authenticated) {
@@ -61,7 +65,7 @@ function guardRoute() {
         replace('/result/');
         return false;
     }
-    if( (currentPage === 'result' || currentPage === 'time-out') && !isTakenExam()) {
+    if ((currentPage === 'result' || currentPage === 'time-out') && !isTakenExam()) {
         replace('/start-exam/');
         return false;
     }

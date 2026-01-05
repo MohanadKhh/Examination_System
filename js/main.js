@@ -14,5 +14,5 @@ if (isProtectedRoute()) {
 }
 
 if (getCurrentPage() === '') {
-    to('/register/');
+    to('/signin/');
 }
